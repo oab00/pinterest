@@ -2,21 +2,22 @@
 
 angular.module('pinterestApp')
   .controller('MainCtrl', function ($scope, $http) {
-    $scope.awesomeThings = [];
+    $scope.pictures = [];
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
+    $http.get('/api/things').success(function(pictures) {
+      $scope.pictures = pictures;
     });
 
-    $scope.addThing = function() {
-      if($scope.newThing === '') {
+    $scope.addPicture = function() {
+      if($scope.newPicture === '') {
         return;
       }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
+      $http.post('/api/things', { url: $scope.newPicture });
+      $scope.pictures.push({ url: $scope.newPicture });
+      $scope.newPicture = '';
     };
 
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
+    $scope.deletePicture = function(picture) {
+      $http.delete('/api/things/' + picture._id);
     };
   });
