@@ -1,3 +1,35 @@
-<div class="col-md-12">
-This is the collection view.
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <p class="lead">Paste a link to an image to add it to your collection!</p>
+    <form ng-submit="addPicture()">
+      <div class="row">
+        <div class="col-xs-10">
+          <input class="form-control" ng-model="newPicture" />
+        </div>
+        <button class="btn btn-success col-xs-2">Submit</button>
+      </div>
+    </form>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">{{title}}</h1>
+      <div class="picture" ng-repeat="picture in pictures">
+        <img class="picture" ng-src="{{picture.url}}" title="{{picture.user.name}}">
+      </div>
+    </div>
+  </div>
 </div>
+
+<footer class="footer">
+  <div class="container">
+      <p>
+        FreeCodeCamp Pinterest Basejump | 
+        <a href="http://github.com/oab00">@oab00</a>
+      </p>
+  </div>
+</footer>

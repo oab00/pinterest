@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('pinterestApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth, $routeParams) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
@@ -20,4 +20,21 @@ angular.module('pinterestApp')
     $scope.isActive = function(route) {
       return route === $location.path();
     };
+
+    var user = $scope.getCurrentUser();
+
+    if (user.name) {
+      $scope.menu.push({
+        'title': 'My Collection',
+        'link': '/' + user.name
+      });
+    }
+
+    if ($routeParams.user && $routeParams.user !== user.name) {
+      $scope.menu.push({
+        'title': $routeParams.user + '\'s Collection',
+        'link': '/' + $routeParams.user
+      });
+    }
+
   });
