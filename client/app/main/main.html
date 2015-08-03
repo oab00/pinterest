@@ -23,7 +23,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10">
-      <h1 class="page-header">Everyone</h1>
+      <h1 class="page-header">
+        Everyone
+        <small ng-show="filterSelected !== false">filtered for {{filterSelected}}</small>
+      </h1>
       <small>*click to visit collection</small>
 
       <div class="main_wall_container" masonry-wall-dir=".item" 
@@ -34,7 +37,7 @@
               <img ng-src="{{picture.url}}" onError="this.onerror=null;this.src='/assets/images/placeholder.png';" />
               
               <div class="image-hover">
-                <a ng-href="/{{picture.user.name}}">{{picture.user.name}}'s Collection</a>
+                <a ng-href="/c/{{picture.user.name}}">{{picture.user.name}}'s Collection</a>
               </div>
           </div>
       </div>
@@ -43,9 +46,12 @@
     <div class="col-md-2">
       <h3 class="page-header">User Filters:</h3>
       <ul>
-        <li>Baby</li>
-        <li>Monster</li>
+        <li ng-repeat="username in usernames">
+          <a href="" ng-click="filterSelect($index)"
+              ng-class="{ 'filtered': filterSelected === username }">{{username}}</a>
+        </li>
       </ul>
+      <button class="btn btn-primary" ng-click="clearFilter()">clear</button>
     </div>
   </div>
 </div>

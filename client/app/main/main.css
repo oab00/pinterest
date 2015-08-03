@@ -64,3 +64,7 @@ h3.page-header {
 .main_wall_container img:hover~.image-hover {
     display: inline;
 }
+
+a.filtered {
+    color: red;
+}

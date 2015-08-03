@@ -16,11 +16,12 @@ exports.setup = function (User, config) {
       }
       if (!user) {
         user = new User({
-          name: profile.displayName,
-          username: profile.username,
+          name: profile.username,
+          username: profile.displayName,
           role: 'user',
-          provider: 'twitter',
+          provider: 'twitter'/*,
           twitter: profile._json
+          */
         });
         user.save(function(err) {
           if (err) return done(err);

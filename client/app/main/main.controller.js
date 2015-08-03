@@ -1,14 +1,29 @@
 'use strict';
 
 angular.module('pinterestApp')
-  .controller('MainCtrl', function ($scope, $http, Auth) {
+  .controller('MainCtrl', function ($scope, $http, Auth, $timeout) {
     $scope.pictures = [];
 
     $scope.loggedIn = Auth.isLoggedIn();
+    $timeout(function() { $scope.loggedIn = Auth.isLoggedIn(); }, 50);
     var user = Auth.getCurrentUser();
+
+    $scope.usernames = [];
+    $scope.filterSelected = false;
+
+    var allPictures = [];
 
     $http.get('/api/things').success(function(pictures) {
       $scope.pictures = pictures;
+      allPictures = pictures;
+
+      var temp = pictures.map(function(picture) {
+        return picture.user.name;
+      }).forEach(function(tmp) {
+        if ($scope.usernames.indexOf(tmp) === -1) {
+          $scope.usernames.push(tmp);
+        }
+      });
     });
 
     $scope.addPicture = function() {
@@ -25,7 +40,18 @@ angular.module('pinterestApp')
       // TODO: .error  and  placeholder image
     };
 
-    $scope.deletePicture = function() {
-      console.log('lol');
+    $scope.filterSelect = function(index) {
+      $scope.pictures = allPictures;
+      
+      $scope.filterSelected = $scope.usernames[index];
+      $scope.pictures = $scope.pictures.filter(function(picture) {
+        return picture.user.name === $scope.usernames[index];
+      }); 
     };
+
+    $scope.clearFilter = function() {
+      $scope.pictures = allPictures;
+      $scope.filterSelected = false;
+    };
+
   });

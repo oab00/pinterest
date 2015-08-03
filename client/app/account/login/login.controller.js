@@ -17,7 +17,7 @@ angular.module('pinterestApp')
           // Logged in, redirect to home
           $location.path('/');
           // TODO: change this to fix the reloading problem when logging in
-          location.reload();
+          //location.reload();
         })
         .catch( function(err) {
           $scope.errors.other = err.message;
