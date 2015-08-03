@@ -23,14 +23,19 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10">
-      <h1 class="page-header">Everyone:</h1>
+      <h1 class="page-header">Everyone</h1>
+      <small>*click to visit collection</small>
 
-      <div class="wall_container" masonry-wall-dir=".item" 
+      <div class="main_wall_container" masonry-wall-dir=".item" 
           masonry-wall-options="{
               gutter: 0, 
               transitionDuration: '0.3s' }">
           <div class="item" ng-repeat="picture in pictures" custom-directive masonry-item-dir> 
-              <img ng-src="{{picture.url}}" title="{{picture.user.name}}" ng-click="deletePicture($index)" />
+              <img ng-src="{{picture.url}}" onError="this.onerror=null;this.src='/assets/images/placeholder.png';" />
+              
+              <div class="image-hover">
+                <a ng-href="/{{picture.user.name}}">{{picture.user.name}}'s Collection</a>
+              </div>
           </div>
       </div>
     </div>

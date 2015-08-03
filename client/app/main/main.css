@@ -29,11 +29,38 @@ h3.page-header {
     margin-top: 54px;
 }
 
-.item {
+.main_wall_container .item {
     margin: 5px;
 }
 
-.item img {
+.main_wall_container img {
     width: 250px;
-    cursor: pointer;
+}
+
+.main_wall_container .image-hover {
+    display: none;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.main_wall_container .image-hover a {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.main_wall_container .image-hover:hover {
+    display: inline;
+}
+
+.main_wall_container img:hover~.image-hover {
+    display: inline;
 }

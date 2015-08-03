@@ -15,6 +15,7 @@ angular.module('pinterestApp')
     $scope.logout = function() {
       Auth.logout();
       $location.path('/');
+      location.reload();
     };
 
     $scope.isActive = function(route) {

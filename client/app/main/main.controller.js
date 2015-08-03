@@ -23,16 +23,9 @@ angular.module('pinterestApp')
           $scope.newPicture = '';
       });
       // TODO: .error  and  placeholder image
-      
     };
 
-    $scope.deletePicture = function(index) {
-      $http.delete('/api/things/' + $scope.pictures[index]._id)
-          .success(function() {
-            $scope.pictures.splice(index, 1);
-          });
+    $scope.deletePicture = function() {
+      console.log('lol');
     };
-    
-    
-
   });

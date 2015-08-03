@@ -9,6 +9,8 @@ angular.module('pinterestApp')
     var user = Auth.getCurrentUser();
     var collectionUser = $routeParams.user;
 
+    $scope.showDeleteButton = collectionUser === user.name;
+
     if (collectionUser === user.name) {
     	$scope.title = 'My Collection';
     } else {
@@ -26,13 +28,22 @@ angular.module('pinterestApp')
       if($scope.newPicture === '') {
         return;
       }
-      $http.post('/api/things', { user: user, url: $scope.newPicture });
-      $scope.pictures.push({ user: user, url: $scope.newPicture });
-      $scope.newPicture = '';
+      $http.post('/api/things', { 
+        url: $scope.newPicture,
+        user: user
+      }).success(function(picture) {
+          $scope.pictures.push(picture);
+          $scope.newPicture = '';
+      });
+      // TODO: .error  and  placeholder image
+      
     };
 
-    $scope.deletePicture = function(picture) {
-      $http.delete('/api/things/' + picture._id);
+    $scope.deletePicture = function(index) {
+      $http.delete('/api/things/' + $scope.pictures[index]._id)
+          .success(function() {
+            $scope.pictures.splice(index, 1);
+          });
     };
 
   });
