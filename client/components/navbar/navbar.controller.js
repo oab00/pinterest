@@ -24,8 +24,11 @@ angular.module('pinterestApp')
 
     var user = $scope.getCurrentUser();
 
+    var done = false;
+
     function checkLogin() {
       if (user.name) {
+        done = true;
         $scope.menu.push({
           'title': 'My Collection',
           'link': '/c/' + user.name
@@ -33,6 +36,7 @@ angular.module('pinterestApp')
       }
 
       if ($routeParams.user && $routeParams.user !== user.name) {
+        done = true;
         $scope.menu.push({
           'title': $routeParams.user + '\'s Collection',
           'link': '/c/' + $routeParams.user
@@ -40,6 +44,10 @@ angular.module('pinterestApp')
       }
     }
 
-    $timeout(checkLogin, 50);
+    checkLogin();
+
+    if (!done) {
+      $timeout(checkLogin, 50);
+    }
 
   });
