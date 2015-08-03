@@ -16,7 +16,7 @@ angular.module('pinterestApp')
     }
 
     $http.get('/api/things').success(function(pictures) {
-    	// change this to a specific api call
+    	// TODO: change this to a specific api call
       $scope.pictures = pictures.filter(function(picture) {
       	return picture.user.name === collectionUser;
       });

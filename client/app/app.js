@@ -5,7 +5,8 @@ angular.module('pinterestApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'masonry'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider

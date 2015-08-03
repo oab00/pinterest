@@ -9,13 +9,7 @@ var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 
 Thing.find({}).remove(function() {
-  Thing.create({
-    user: { name: 'Test' },
-    url: 'http://i.imgur.com/ognYZHF.jpg'
-  }, {
-    user: { name: 'Test2' },
-    url: 'http://i.imgur.com/UgLkINJ.jpg'
-  });
+  //Thing.create({});
 });
 
 User.find({}).remove(function() {
