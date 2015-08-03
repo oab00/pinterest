@@ -22,16 +22,25 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-md-10">
       <h1 class="page-header">Everyone:</h1>
-    </div>
-  </div>
 
-  <div class="row">
-    <div masonry='{"itemSelector" : ".picture"}' class="pictures">
-      <div class="picture" ng-repeat="picture in pictures">
-        <img ng-src="{{picture.url}}" title="{{picture.user.name}}" ng-click="deletePicture($index)" /><br />
+      <div class="wall_container" masonry-wall-dir=".item" 
+          masonry-wall-options="{
+              gutter: 0, 
+              transitionDuration: '0.3s' }">
+          <div class="item" ng-repeat="picture in pictures" custom-directive masonry-item-dir> 
+              <img ng-src="{{picture.url}}" title="{{picture.user.name}}" ng-click="deletePicture($index)" />
+          </div>
       </div>
+    </div>
+
+    <div class="col-md-2">
+      <h3 class="page-header">User Filters:</h3>
+      <ul>
+        <li>Baby</li>
+        <li>Monster</li>
+      </ul>
     </div>
   </div>
 </div>

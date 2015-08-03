@@ -5,6 +5,7 @@ angular.module('pinterestApp')
     $scope.pictures = [];
 
     $scope.loggedIn = Auth.isLoggedIn();
+    var user = Auth.getCurrentUser();
 
     $http.get('/api/things').success(function(pictures) {
       $scope.pictures = pictures;
@@ -14,12 +15,13 @@ angular.module('pinterestApp')
       if($scope.newPicture === '') {
         return;
       }
-      $http.post('/api/things', { url: $scope.newPicture })
-          .success(function(picture) {
-            $scope.pictures.push(picture);
-            $scope.newPicture = '';
-            $scope.$emit('masonry.layout()');
-          });
+      $http.post('/api/things', { 
+        url: $scope.newPicture,
+        user: user
+      }).success(function(picture) {
+          $scope.pictures.push(picture);
+          $scope.newPicture = '';
+      });
       // TODO: .error  and  placeholder image
       
     };
