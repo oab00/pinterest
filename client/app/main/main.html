@@ -5,18 +5,36 @@
     <p class="lead">Paste a link to an image to add it to your own collection!</p>
     <form ng-submit="addPicture()">
       <div class="row">
-        <div class="col-xs-10">
-          <input class="form-control" ng-model="newPicture" />
+        <div class="col-sm-3"></div>
+        <div class="col-sm-5">
+          <input class="form-control" ng-model="newPicture" placeholder="http://link-to-image.com/image.jpg" />
         </div>
-        <button class="btn btn-success col-xs-2">Submit</button>
+        <button class="btn btn-success col-sm-1">Submit</button>
       </div>
     </form>
   </div>
 
   <div class="container" ng-hide="loggedIn">
     <p class="lead">Sign up or Login to add your own pictures!</p>
-    <a href="/signup"><button class="btn btn-success">Sign Up</button></a>
-    <a href="/login"><button class="btn btn-info">Login</button></a>
+
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-3">
+        <input class="form-control" placeholder="Name">
+      </div>
+      <div class="col-sm-3">
+        <input class="form-control" placeholder="Password">
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <a href="/signup"><button class="btn btn-success col-sm-1"><b>Sign Up</b></button></a>
+      <a href="/login"><button class="btn btn-info col-sm-2"><b>Login</b></button></a>
+      <a class="btn btn-twitter col-sm-2" href="" ng-click="loginOauth('twitter')">
+        <i class="fa fa-twitter"></i> Connect with Twitter
+      </a>
+    </div>
   </div>
 </header>
 
@@ -36,7 +54,7 @@
           <div class="item" ng-repeat="picture in pictures" custom-directive masonry-item-dir> 
               <img ng-src="{{picture.url}}" onError="this.onerror=null;this.src='/assets/images/placeholder.png';" />
               
-              <div class="image-hover">
+              <div class="image-hover" title="{{picture.url}}">
                 <a ng-href="/c/{{picture.user.name}}">{{picture.user.name}}'s Collection</a>
               </div>
           </div>
