@@ -21,6 +21,9 @@ var all = {
   // Server port
   port: process.env.PORT || 9000,
 
+  // Server IP
+  ip: process.env.IP || '0.0.0.0',
+
   // Should we populate the DB with sample data?
   seedDB: false,
 
@@ -39,6 +42,12 @@ var all = {
         safe: true
       }
     }
+  },
+
+  twitter: {
+    clientID:     process.env.TWITTER_ID || 'id',
+    clientSecret: process.env.TWITTER_SECRET || 'secret',
+    callbackURL:  (process.env.DOMAIN || '') + '/auth/twitter/callback'
   },
 
 };
