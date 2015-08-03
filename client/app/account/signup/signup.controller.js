@@ -10,7 +10,7 @@ angular.module('pinterestApp')
 
       if(form.$valid) {
         Auth.createUser({
-          name: $scope.user.name,
+          name: $scope.user.email,
           email: $scope.user.email,
           password: $scope.user.password
         })

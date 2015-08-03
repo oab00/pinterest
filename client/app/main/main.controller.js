@@ -36,8 +36,11 @@ angular.module('pinterestApp')
       }).success(function(picture) {
           $scope.pictures.push(picture);
           $scope.newPicture = '';
+
+          if ($scope.usernames.indexOf(picture.user.name) === -1) {
+            $scope.usernames.push(picture.user.name);
+          }
       });
-      // TODO: .error  and  placeholder image
     };
 
     $scope.filterSelect = function(index) {

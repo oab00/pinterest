@@ -27,7 +27,7 @@
         Everyone
         <small ng-show="filterSelected !== false">filtered for {{filterSelected}}</small>
       </h1>
-      <small>*click to visit collection</small>
+      <small>*click a picture to visit user's collection</small>
 
       <div class="main_wall_container" masonry-wall-dir=".item" 
           masonry-wall-options="{
@@ -51,7 +51,7 @@
               ng-class="{ 'filtered': filterSelected === username }">{{username}}</a>
         </li>
       </ul>
-      <button class="btn btn-primary" ng-click="clearFilter()">clear</button>
+      <button class="btn btn-primary" ng-click="clearFilter()">clear filter</button>
     </div>
   </div>
 </div>
